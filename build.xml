@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="OrderRevocator" default="package">
+
+    <property name="folder" value="orderrevocator"/>
+    <property name="version" value="1.0.0"/>
+
+    <target name="package">
+        <delete quiet="true">
+            <fileset errorOnMissingDir="true">
+                <include name="${folder}-*.zip"/>
+            </fileset>
+        </delete>
+        <phingcall target="composer.install.production"/>
+        <phingcall target="composer.dump"/>
+        <zip destfile="${folder}-${version}.zip">
+            <fileset dir=".">
+                <include name="${folder}/**"/>
+            </fileset>
+        </zip>
+        <phingcall target="composer.install.development"/>
+        <phingcall target="composer.dump"/>
+    </target>
+
+    <target name="composer.install.development">
+        <exec executable="composer">
+            <arg line='install -d "${folder}"'/>
+        </exec>
+    </target>
+
+    <target name="composer.install.production">
+        <exec executable="composer" checkreturn="true">
+            <arg line='install -d "${folder}" --no-dev -o'/>
+        </exec>
+    </target>
+
+    <target name="composer.update">
+        <exec executable="composer" passthru="true">
+            <arg line='update -d "${folder}"'/>
+        </exec>
+    </target>
+
+    <target name="composer.dump">
+        <exec executable="composer" passthru="true">
+            <arg line='dump-autoload -d "${folder}"'/>
+        </exec>
+    </target>
+
+    <target name="autoindex">
+        <exec executable="php" passthru="true">
+            <arg file="orderrevocator/vendor/bin/autoindex"/>
+            <arg value="prestashop:add:index"/>
+        </exec>
+    </target>
+
+</project>
