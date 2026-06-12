@@ -1,0 +1,21 @@
+/* Custom Styling revocation link */
+.btn-orderrevocator {
+    display: inline-block;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+#footer_revocator_collapse li a.btn-orderrevocator {
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .btn-orderrevocator {
+        display: block;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+}

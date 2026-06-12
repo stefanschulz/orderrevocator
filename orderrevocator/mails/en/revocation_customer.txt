@@ -1,0 +1,21 @@
+Hello {customer_name},
+
+We have received your cancellation of your order. This email serves as the legally required confirmation that we have successfully received your cancellation on a durable medium.
+
+Summary of the cancellation:
+==================================================
+Order reference: {order_reference}
+Date / Time received: {timestamp}
+
+Your comments:
+{message}
+==================================================
+
+We will process your cancellation as soon as possible. Should we require any further information, or once the refund process has been completed, we will contact you immediately.
+
+Kind regards,
+Your Team at {shop_name}
+
+--
+{shop_url}
+This email was generated automatically.

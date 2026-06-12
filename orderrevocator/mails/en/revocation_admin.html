@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>New cancellation received:</title>
+    <style type="text/css">
+        body { width: 100% !important; margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 14px; color: #333333; background-color: #f6f6f6; }
+        .wrapper { width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e9e9e9; }
+        .header { padding: 20px; border-bottom: 2px solid #ff4c4c; background-color: #fff5f5; }
+        .content { padding: 30px; line-height: 1.6; }
+        .details-box { background-color: #f9f9f9; border-left: 4px solid #ff4c4c; padding: 15px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <h2 style="margin: 0;">New cancellation</h2>
+    </div>
+    <div class="content">
+        <p>Hi Admin,</p>
+        <p>A new order cancellation has been received via the online form. The customer has already received an automatic confirmation of receipt.</p>
+
+        <div class="details-box">
+            <strong>Details on cancellation:</strong><br />
+            --------------------------------------------------<br />
+            <strong>Customer:</strong> {customer_name}<br />
+            <strong>E-Mail-Address:</strong> {customer_email}<br />
+            <strong>Order Reference:</strong> {order_reference}<br />
+            <strong>Date of receipt:</strong> {timestamp}<br />
+            <strong>Customer message:</strong><br />
+            {message}
+        </div>
+
+        <p>Please check the order in the PrestaShop admin panel and take the necessary steps to cancel it and issue a refund.</p>
+    </div>
+</div>
+</body>
+</html>

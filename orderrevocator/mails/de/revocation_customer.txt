@@ -1,0 +1,21 @@
+Hallo {customer_name},
+
+wir haben den Wideruf Ihrer Bestellung erhalten. Diese E-Mail dient Ihnen als gesetzlich vorgeschriebene Bestätigung über den erfolgreichen Eingang Ihres Widerrufs.
+
+Zusammenfassung des Widerrufs:
+==================================================
+Bestellnummer: {order_reference}
+Eingangsdatum / Uhrzeit: {timestamp}
+
+Ihre Anmerkungen:
+{message}
+==================================================
+
+Wir werden Ihren Widerruf nun schnellstmöglich bearbeiten. Sollten wir weitere Informationen benötigen oder die Rückabwicklung abgeschlossen sein, melden wir uns unverzüglich bei Ihnen.
+
+Mit freundlichen Grüßen,
+Ihr Team von {shop_name}
+
+--
+{shop_url}
+Diese E-Mail wurde automatisch generiert.

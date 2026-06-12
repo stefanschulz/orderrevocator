@@ -6,13 +6,15 @@
 
     <target name="package">
         <delete quiet="true">
-            <fileset errorOnMissingDir="true">
+            <!--suppress PhingDomInspection -->
+            <fileset>
                 <include name="${folder}-*.zip"/>
             </fileset>
         </delete>
         <phingcall target="composer.install.production"/>
         <phingcall target="composer.dump"/>
         <zip destfile="${folder}-${version}.zip">
+            <!--suppress PhingDomInspection -->
             <fileset dir=".">
                 <include name="${folder}/**"/>
             </fileset>

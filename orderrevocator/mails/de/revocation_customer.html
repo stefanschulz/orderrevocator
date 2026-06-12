@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Bestätigung Ihres Widerrufs</title>
+    <style type="text/css">
+        body { width: 100% !important; margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 14px; color: #333333; background-color: #f6f6f6; }
+        .wrapper { width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e9e9e9; }
+        .header { padding: 20px; border-bottom: 2px solid #24b9d7; text-align: center; }
+        .content { padding: 30px; line-height: 1.6; }
+        .details-box { background-color: #f9f9f9; border-left: 4px solid #24b9d7; padding: 15px; margin: 20px 0; }
+        .footer { padding: 20px; font-size: 12px; color: #999999; text-align: center; background-color: #f9f9f9; border-top: 1px solid #e9e9e9; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <h2>{shop_name}</h2>
+    </div>
+    <div class="content">
+        <p>Hallo <strong>{customer_name}</strong>,</p>
+        <p>wir haben den Widerruf zu Ihrer Bestellung erhalten. Diese E-Mail dient Ihnen als gesetzlich vorgeschriebene Bestätigung über den erfolgreichen Eingang Ihres Widerrufs auf einem dauerhaften Datenträger.</p>
+
+        <div class="details-box">
+            <strong>Zusammenfassung des Widerrufs:</strong><br />
+            --------------------------------------------------<br />
+            <strong>Bestellnummer:</strong> {order_reference}<br />
+            <strong>Eingangsdatum / Uhrzeit:</strong> {timestamp}<br />
+            <strong>Ihre Anmerkungen:</strong><br />
+            {message}
+        </div>
+
+        <p>Wir werden Ihren Widerruf nun schnellstmöglich bearbeiten. Sollten wir weitere Informationen benötigen oder die Rückabwicklung (z. B. die Rückzahlung) abgeschlossen sein, melden wir uns unverzüglich bei Ihnen.</p>
+        <p>Mit freundlichen Grüßen,<br />Ihr Team von {shop_name}</p>
+    </div>
+    <div class="footer">
+        <p>Diese E-Mail wurde automatisch generiert.</p>
+    </div>
+</div>
+</body>
+</html>

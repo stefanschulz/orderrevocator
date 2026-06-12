@@ -1,0 +1,19 @@
+Hallo Admin,
+
+über das Online-Formular ist ein neuer Bestellwiderruf eingegangen. Der Kunde hat bereits eine automatische Eingangsbestätigung erhalten.
+
+Details zum Widerruf:
+==================================================
+Kunde: {customer_name}
+E-Mail-Adresse: {customer_email}
+Bestellnummer: {order_reference}
+Zeitpunkt des Eingangs: {timestamp}
+
+Nachricht des Kunden:
+{message}
+==================================================
+
+Bitte prüfen Sie die Bestellung im PrestaShop-Backoffice und leiten Sie die entsprechenden Schritte zur Stornierung und Rückzahlung ein.
+
+--
+{shop_url}

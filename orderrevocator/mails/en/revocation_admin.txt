@@ -1,0 +1,19 @@
+Hi Admin,
+
+A new order cancellation has been received via the online form. The customer has already received an automatic confirmation of receipt.
+
+Details on cancellation:
+==================================================
+Customer: {customer_name}
+E-Mail-Address: {customer_email}
+Order Reference: {order_reference}
+Date of receipt: {timestamp}
+
+Customer message:
+{message}
+==================================================
+
+Please check the order in the PrestaShop admin panel and take the necessary steps to cancel it and issue a refund.
+
+--
+{shop_url}
