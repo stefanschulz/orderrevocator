@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2026 Stefan Schulz
  *
@@ -28,7 +29,7 @@ if (!defined('_PS_VERSION_')) {
 
 class Definitions
 {
-    const string MODULE_NAME = 'orderrevocator';
-    const string TRANS_ADMIN = 'Modules.Orderrevocator.Admin';
-    const string TRANS_SHOP = 'Modules.Orderrevocator.Shop';
+    public const string MODULE_NAME = 'orderrevocator';
+    public const string TRANS_ADMIN = 'Modules.Orderrevocator.Orderrevocator';
+    public const string TRANS_SHOP = 'Modules.Orderrevocator.Shop';
 }

@@ -15,7 +15,7 @@
     "ext-zip": "*"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "v3.41.1",
+    "friendsofphp/php-cs-fixer": "^3.95",
     "prestashop/php-dev-tools": "^5.0",
     "prestashop/autoindex": "^2.1",
     "phing/phing": "^3.1"

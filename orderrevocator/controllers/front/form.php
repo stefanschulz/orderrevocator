@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2026 Stefan Schulz
  *
@@ -20,17 +21,21 @@
  */
 
 use PrestaShop\Module\OrderRevocator\Entity\Definitions;
+use PrestaShopBundle\Translation\DomainNormalizer;
 
 /**
  * Class OrderRevocatorFormModuleFrontController
  */
 class OrderRevocatorFormModuleFrontController extends ModuleFrontController
 {
+    /**
+     * @throws PrestaShopException
+     */
     public function initContent(): void
     {
         parent::initContent();
 
-        // Falls das Formular abgeschickt wurde
+        // form sent?
         if (Tools::isSubmit('submit_revocation')) {
             $this->handleRevocationSubmit();
         }
@@ -39,75 +44,83 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
             'action_url' => $this->context->link->getModuleLink(Definitions::MODULE_NAME, 'form'),
             'errors' => $this->errors,
             'success' => (bool) Tools::getValue('success'),
+            'token' => Tools::getToken(false),
         ]);
 
         $this->setTemplate('module:' . Definitions::MODULE_NAME . '/views/templates/front/form.tpl');
     }
 
-    protected function handleRevocationSubmit()
+    protected function handleRevocationSubmit(): void
     {
         // bot protection, check honeypot
         if (!empty(Tools::getValue('website_hp'))) {
             Tools::redirect($this->context->link->getModuleLink(Definitions::MODULE_NAME, 'form', ['success' => 1]));
         }
 
-        $order_ref = trim(Tools::getValue('order_reference'));
+        // form protection
+        if (Tools::getValue('token') !== Tools::getToken(false)) {
+            $this->errors[] = $this->trans('Invalid security token.', [], Definitions::TRANS_ADMIN);
+
+            return;
+        }
+
+        // load and validate input
+        $customerName = trim(Tools::getValue('customer_name'));
+        $orderReference = trim(Tools::getValue('order_reference'));
+        $customerEmail = trim((string) Tools::getValue('customer_email'));
         $message = trim(Tools::getValue('message'));
 
-        // validate input
-        if (empty($order_ref)) {
-            $this->errors[] = $this->trans('Please complete all the required fields.', [], Definitions::TRANS_SHOP);
+        if (empty($customerName) || !Validate::isName($customerName)) {
+            $this->errors[] = $this->trans('Please, enter a valid name.', [], Definitions::TRANS_ADMIN);
+        }
+
+        if (empty($customerEmail) || !Validate::isEmail($customerEmail)) {
+            $this->errors[] = $this->trans('Please, enter a valid email address.', [], Definitions::TRANS_ADMIN);
+        }
+
+        if (empty($orderReference) || !Validate::isReference($orderReference)) {
+            $this->errors[] = $this->trans('The order reference contains invalid characters.', [], Definitions::TRANS_ADMIN);
+        }
+
+        if (!empty($this->errors)) {
             return;
         }
 
-        if (!Validate::isReference($order_ref)) {
-            $this->errors[] = $this->trans('The order reference contains invalid characters.', [], Definitions::TRANS_SHOP);
-            return;
-        }
+        // all is fine, send the mails
+        $this->sendMails($customerName, $orderReference, $customerEmail, $message);
 
-        // find order in database
-        $orders = Order::getByReference($order_ref);
+        // redirect, avoid page refresh duplicate submits
+        Tools::redirect($this->context->link->getModuleLink(Definitions::MODULE_NAME, 'form', ['success' => 1]));
+    }
 
-        if ($orders->count() === 0) {
-            $this->errors[] = $this->trans('The specified order reference could not be found in our system. Please check your entry.', [], Definitions::TRANS_SHOP);
-            return;
-        }
-
-        /** @var Order $order */
-        $order = $orders->getFirst();
-        $customer = $order->getCustomer();
-        if (!Validate::isLoadedObject($customer)) {
-            $this->errors[] = $this->trans('No customer data could be found for this order.', [], Definitions::TRANS_SHOP);
-            return;
-        }
-
-        $canceled_state_id = (int) Configuration::get('PS_OS_CANCELED');
-        $current_state_id = $order->getCurrentState();
-
-        if ($current_state_id === $canceled_state_id) {
-            $this->errors[] = $this->trans('This order has already been canceled. You do not need to cancel it again.', [], 'Modules.Orderrevocator.Shop');
-            return;
-        }
-
-        $customerName = $customer->firstname . ' ' . $customer->lastname;
-        $customerEmail = $customer->email;
-
+    /**
+     * Send mails to customer and admin.
+     *
+     * @param string $customerName
+     * @param string $orderReference
+     * @param string $customerEmail
+     * @param string $message
+     *
+     * @return void
+     */
+    public function sendMails(string $customerName, string $orderReference, string $customerEmail, string $message): void
+    {
         // prepare e-mails
         $timestamp = date('Y-m-d H:i:s');
-        $mail_vars = [
-            '{customer_name}' => htmlspecialchars($customerName),
-            '{customer_email}' => htmlspecialchars($customerEmail),
-            '{order_reference}' => htmlspecialchars($order_ref),
+        $mailVars = [
+            '{customer_name}' => $customerName,
+            '{customer_email}' => $customerEmail,
+            '{order_reference}' => htmlspecialchars($orderReference),
             '{message}' => nl2br(htmlspecialchars($message)),
             '{timestamp}' => $timestamp,
         ];
 
         // customer confirmation
         Mail::Send(
-            (int)$this->context->language->id,
+            (int) $this->context->language->id,
             'revocation_customer',
-            $this->trans('Confirmation of your cancellation', [], Definitions::TRANS_ADMIN),
-            $mail_vars,
+            $this->trans('Confirmation of your cancellation request', [], Definitions::TRANS_ADMIN),
+            $mailVars,
             $customerEmail,
             $customerName,
             null,
@@ -122,10 +135,10 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
         $shopEmail = (string) Configuration::get('PS_SHOP_EMAIL');
         $shopName = (string) Configuration::get('PS_SHOP_NAME');
         Mail::Send(
-            (int)$this->context->language->id,
+            (int) $this->context->language->id,
             'revocation_admin',
-            $this->trans('New cancellation received: ', [], Definitions::TRANS_ADMIN) . $order_ref,
-            $mail_vars,
+            $this->trans('New cancellation request received: ', [], Definitions::TRANS_ADMIN) . $orderReference,
+            $mailVars,
             $shopEmail,
             $shopName,
             null,
@@ -135,8 +148,5 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
             _PS_MODULE_DIR_ . Definitions::MODULE_NAME . '/mails/',
             true
         );
-
-        // redirect, avoid page refresh duplicate submits
-        Tools::redirect($this->context->link->getModuleLink(Definitions::MODULE_NAME, 'form', ['success' => 1]));
     }
 }

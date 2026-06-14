@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2026 Stefan Schulz
  *
@@ -33,12 +34,11 @@ if (!defined('_PS_VERSION_')) {
  */
 class OrderRevocator extends Module
 {
-
     public function __construct()
     {
         $this->name = Definitions::MODULE_NAME;
         $this->tab = 'front_office_features';
-        $this->version = '1.0.0';
+        $this->version = '1.1.0';
         $this->author = 'Stefan Schulz';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '9.0.0', 'max' => '9.9.9'];
@@ -97,5 +97,4 @@ class OrderRevocator extends Module
             ]
         );
     }
-
 }

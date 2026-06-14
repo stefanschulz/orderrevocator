@@ -2,25 +2,25 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="ModulesOrderrevocatorOrderrevocator.xlf" source-language="de-DE" target-language="de-DE" datatype="plaintext">
     <body>
-      <trans-unit id="661e2f0914c9afe507904cba3a8fc235">
-        <source>Confirmation of your cancellation</source>
-        <target>Bestätigung Ihres Widerrufs</target>
+      <trans-unit id="bb5666f1e413b1ecd59d581a9bdc0ca8">
+        <source>Confirmation of your cancellation request</source>
+        <target>Bestätigung Ihrer Widerrufsanfrage</target>
       </trans-unit>
-      <trans-unit id="2f733b4361e360bde5cfc75fa26a31de">
-        <source>The specified order reference could not be found in our system. Please check your entry.</source>
-        <target>Die angegebene Bestellnummer konnte im System nicht gefunden werden. Bitte prüfen Sie Ihre Eingabe.</target>
+      <trans-unit id="66dff4bc6149738292b7b2737e7e2e8c">
+        <source>Invalid security token.</source>
+        <target>Ungültiger Sicherheits-Token.</target>
       </trans-unit>
-      <trans-unit id="645999518cb35a6e080808333d4419ef">
-        <source>New cancellation received:: </source>
-        <target>Neuer Widerruf eingegangen:: </target>
+      <trans-unit id="722937ceda6c26353cf4a0d472bd6ca5">
+        <source>New cancellation request received: </source>
+        <target>Neue Widerrufsanfrage erhalten: </target>
       </trans-unit>
-      <trans-unit id="34736fc817b6b15eaa951e4723e58600">
-        <source>No customer data could be found for this order.</source>
-        <target>Zu dieser Bestellung konnten keine Kundendaten ermittelt werden.</target>
+      <trans-unit id="b2a7070b1fef5cb1dce4c79c376edcb4">
+        <source>Please, enter a valid email address.</source>
+        <target>Bitte eine gültige E-Mail-Adresse angeben.</target>
       </trans-unit>
-      <trans-unit id="d4749e050c263f981bc8a87500508d89">
-        <source>Please complete all the required fields.</source>
-        <target>Bitte alle erforderlichen Felder ausfüllen.</target>
+      <trans-unit id="fc5429e645233f78a568d4d2d7505336">
+        <source>Please, enter a valid name.</source>
+        <target>Bitte einen regulären Namen eingeben.</target>
       </trans-unit>
       <trans-unit id="1bca9a873b42e847db937fb173f11394">
         <source>Provides the legally required two-stage cancellation process without mandatory login.</source>

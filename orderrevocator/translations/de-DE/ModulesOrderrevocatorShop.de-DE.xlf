@@ -10,6 +10,14 @@
         <source>Cancellation successfully submitted</source>
         <target>Widerruf erfolgreich abgesendet</target>
       </trans-unit>
+      <trans-unit id="b9c33fac8ba3209eb709ef533c6ffaa8">
+        <source>Confirm cancellation</source>
+        <target>Widerruf bestätigen</target>
+      </trans-unit>
+      <trans-unit id="b357b524e740bc85b9790a0712d84a30">
+        <source>Email address</source>
+        <target>E-Mail Adresse</target>
+      </trans-unit>
       <trans-unit id="a10a9bcd450087de1ce1f80b35f44883">
         <source>Legal</source>
         <target>Rechtliches</target>
@@ -18,25 +26,25 @@
         <source>Order reference</source>
         <target>Bestellnummer</target>
       </trans-unit>
-      <trans-unit id="d15ce9585fb7634a14ed917ed342db14">
-        <source>Revoke now</source>
-        <target>Jetzt widerrufen</target>
-      </trans-unit>
       <trans-unit id="219668ff82f01c2a7a928c29f226d5ce">
         <source>Revoke order</source>
         <target>Bestellung widerrufen</target>
       </trans-unit>
-      <trans-unit id="ef130963f370ac55a035de145c4491da">
-        <source>This order has already been canceled. You do not need to cancel it again.</source>
-        <target>Diese Bestellung wurde bereits storniert. Ein erneuter Widerruf ist nicht erforderlich.</target>
+      <trans-unit id="520b7086a71159f43d5ba86a53296c2a">
+        <source>You can find the order number in your order confirmation.</source>
+        <target>Sie finden die Bestellnummer in Ihrer Bestellbestätigung.</target>
       </trans-unit>
-      <trans-unit id="37ed9c62f3676735f15e7044982ad23e">
-        <source>You can use this form to quickly and easily revoke your order. The email address from your order will be used automatically.</source>
-        <target>Über dieses Formular können Sie schnell und unkompliziert Ihre Bestellung widerrufen. Es wird automatisch die E-Mail-Adresse Ihrer Bestellung verwendet.</target>
+      <trans-unit id="f2adc7c3a11a3c0f905bc3043e9cd9b7">
+        <source>You can use this form to quickly and easily revoke your order.</source>
+        <target>Über dieses Formular können Sie schnell und unkompliziert Ihre Bestellung widerrufen.</target>
       </trans-unit>
-      <trans-unit id="a6d6b7ea9d00440c1e932adf3fafc508">
-        <source>Your cancellation has been received. We have sent a confirmation with all details and the exact time of receipt to the email address stored in our system.</source>
-        <target>Ihr Widerruf ist bei uns eingegangen. Wir haben Ihnen soeben eine Bestätigung mit allen Angaben und dem exakten Eingangszeitpunkt an die im System hinterlegte E-Mail-Adresse zugesendet.</target>
+      <trans-unit id="331b8148188f786022bda1ff38151be2">
+        <source>Your cancellation has been received. We have sent a confirmation with all details and the exact time of receipt.</source>
+        <target>Ihr Widerruf ist bei uns eingegangen. Wir haben Ihnen soeben eine Bestätigung mit allen Angaben und dem exakten Eingangszeitpunkt zugesendet.</target>
+      </trans-unit>
+      <trans-unit id="221e705c06e231636fdbccfdd14f4d5c">
+        <source>Your name</source>
+        <target>Ihr Name</target>
       </trans-unit>
     </body>
   </file>

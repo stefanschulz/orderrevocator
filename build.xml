@@ -2,7 +2,7 @@
 <project name="OrderRevocator" default="package">
 
     <property name="folder" value="orderrevocator"/>
-    <property name="version" value="1.0.0"/>
+    <property name="version" value="1.1.0"/>
 
     <target name="package">
         <delete quiet="true">
