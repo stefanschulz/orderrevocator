@@ -46,6 +46,10 @@
         <source>Your name</source>
         <target>Ihr Name</target>
       </trans-unit>
+      <trans-unit id="7a1e4c9d6a5f4e2c8b0e3f6d9c1a2b3d">
+        <source>You have already submitted a cancellation request recently. Please wait a moment and try again, or contact us directly if this is urgent.</source>
+        <target>Sie haben über dieses Formular bereits vor Kurzem einen Widerruf übermittelt. Bitte warten Sie einen Moment und versuchen Sie es erneut, oder kontaktieren Sie uns direkt, falls es dringend ist.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

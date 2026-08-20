@@ -32,4 +32,10 @@ class Definitions
     public const string MODULE_NAME = 'orderrevocator';
     public const string TRANS_ADMIN = 'Modules.Orderrevocator.Orderrevocator';
     public const string TRANS_SHOP = 'Modules.Orderrevocator.Shop';
+
+    /** Minimum time a human needs between opening the form and submitting it. Blocks scripted instant submits. */
+    public const int RATE_LIMIT_MIN_FILL_SECONDS = 3;
+
+    /** Minimum time between two submissions from the same visitor. */
+    public const int RATE_LIMIT_COOLDOWN_SECONDS = 90;
 }

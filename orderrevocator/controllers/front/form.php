@@ -38,6 +38,10 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
         // form sent?
         if (Tools::isSubmit('submit_revocation')) {
             $this->handleRevocationSubmit();
+        } else {
+            // remember when the (empty) form was handed to the visitor, used to rate-limit submissions
+            $this->context->cookie->orderrevocator_rendered_at = time();
+            $this->context->cookie->write();
         }
 
         $this->context->smarty->assign([
@@ -55,6 +59,20 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
         // bot protection, check honeypot
         if (!empty(Tools::getValue('website_hp'))) {
             Tools::redirect($this->context->link->getModuleLink(Definitions::MODULE_NAME, 'form', ['success' => 1]));
+        }
+
+        // bot protection, reject submissions that arrive faster than a human could fill the form
+        $renderedAt = (int) $this->context->cookie->orderrevocator_rendered_at;
+        if ($renderedAt === 0 || (time() - $renderedAt) < Definitions::RATE_LIMIT_MIN_FILL_SECONDS) {
+            Tools::redirect($this->context->link->getModuleLink(Definitions::MODULE_NAME, 'form', ['success' => 1]));
+        }
+
+        // rate limit, avoid repeated submissions from the same visitor in quick succession
+        $lastSubmitAt = (int) $this->context->cookie->orderrevocator_last_submit_at;
+        if ($lastSubmitAt !== 0 && (time() - $lastSubmitAt) < Definitions::RATE_LIMIT_COOLDOWN_SECONDS) {
+            $this->errors[] = $this->trans('You have already submitted a cancellation request recently. Please wait a moment and try again, or contact us directly if this is urgent.', [], Definitions::TRANS_SHOP);
+
+            return;
         }
 
         // form protection
@@ -88,6 +106,10 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
 
         // all is fine, send the mails
         $this->sendMails($customerName, $orderReference, $customerEmail, $message);
+
+        // start the cooldown for this visitor
+        $this->context->cookie->orderrevocator_last_submit_at = time();
+        $this->context->cookie->write();
 
         // redirect, avoid page refresh duplicate submits
         Tools::redirect($this->context->link->getModuleLink(Definitions::MODULE_NAME, 'form', ['success' => 1]));
