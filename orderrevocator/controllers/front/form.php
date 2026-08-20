@@ -130,8 +130,8 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
         // prepare e-mails
         $timestamp = date('Y-m-d H:i:s');
         $mailVars = [
-            '{customer_name}' => $customerName,
-            '{customer_email}' => $customerEmail,
+            '{customer_name}' => htmlspecialchars($customerName),
+            '{customer_email}' => htmlspecialchars($customerEmail),
             '{order_reference}' => htmlspecialchars($orderReference),
             '{message}' => nl2br(htmlspecialchars($message)),
             '{timestamp}' => $timestamp,
