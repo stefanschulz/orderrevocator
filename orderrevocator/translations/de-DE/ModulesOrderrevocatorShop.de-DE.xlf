@@ -18,6 +18,10 @@
         <source>Email address</source>
         <target>E-Mail Adresse</target>
       </trans-unit>
+      <trans-unit id="66dff4bc6149738292b7b2737e7e2e8c">
+        <source>Invalid security token.</source>
+        <target>Ungültiger Sicherheits-Token.</target>
+      </trans-unit>
       <trans-unit id="a10a9bcd450087de1ce1f80b35f44883">
         <source>Legal</source>
         <target>Rechtliches</target>
@@ -26,9 +30,21 @@
         <source>Order reference</source>
         <target>Bestellnummer</target>
       </trans-unit>
+      <trans-unit id="b2a7070b1fef5cb1dce4c79c376edcb4">
+        <source>Please, enter a valid email address.</source>
+        <target>Bitte eine gültige E-Mail-Adresse angeben.</target>
+      </trans-unit>
+      <trans-unit id="fc5429e645233f78a568d4d2d7505336">
+        <source>Please, enter a valid name.</source>
+        <target>Bitte einen regulären Namen eingeben.</target>
+      </trans-unit>
       <trans-unit id="219668ff82f01c2a7a928c29f226d5ce">
         <source>Revoke order</source>
         <target>Bestellung widerrufen</target>
+      </trans-unit>
+      <trans-unit id="9cf7caf665e9236cde71c3398ac07829">
+        <source>The order reference contains invalid characters.</source>
+        <target>Die Bestellnummer enthält ungültige Zeichen.</target>
       </trans-unit>
       <trans-unit id="520b7086a71159f43d5ba86a53296c2a">
         <source>You can find the order number in your order confirmation.</source>

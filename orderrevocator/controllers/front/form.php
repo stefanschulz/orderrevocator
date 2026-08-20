@@ -77,7 +77,7 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
 
         // form protection
         if (Tools::getValue('token') !== Tools::getToken(false)) {
-            $this->errors[] = $this->trans('Invalid security token.', [], Definitions::TRANS_ADMIN);
+            $this->errors[] = $this->trans('Invalid security token.', [], Definitions::TRANS_SHOP);
 
             return;
         }
@@ -89,15 +89,15 @@ class OrderRevocatorFormModuleFrontController extends ModuleFrontController
         $message = trim(Tools::getValue('message'));
 
         if (empty($customerName) || !Validate::isName($customerName)) {
-            $this->errors[] = $this->trans('Please, enter a valid name.', [], Definitions::TRANS_ADMIN);
+            $this->errors[] = $this->trans('Please, enter a valid name.', [], Definitions::TRANS_SHOP);
         }
 
         if (empty($customerEmail) || !Validate::isEmail($customerEmail)) {
-            $this->errors[] = $this->trans('Please, enter a valid email address.', [], Definitions::TRANS_ADMIN);
+            $this->errors[] = $this->trans('Please, enter a valid email address.', [], Definitions::TRANS_SHOP);
         }
 
         if (empty($orderReference) || !Validate::isReference($orderReference)) {
-            $this->errors[] = $this->trans('The order reference contains invalid characters.', [], Definitions::TRANS_ADMIN);
+            $this->errors[] = $this->trans('The order reference contains invalid characters.', [], Definitions::TRANS_SHOP);
         }
 
         if (!empty($this->errors)) {

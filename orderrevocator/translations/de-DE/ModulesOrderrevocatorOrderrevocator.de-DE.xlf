@@ -6,21 +6,9 @@
         <source>Confirmation of your cancellation request</source>
         <target>Bestätigung Ihrer Widerrufsanfrage</target>
       </trans-unit>
-      <trans-unit id="66dff4bc6149738292b7b2737e7e2e8c">
-        <source>Invalid security token.</source>
-        <target>Ungültiger Sicherheits-Token.</target>
-      </trans-unit>
       <trans-unit id="722937ceda6c26353cf4a0d472bd6ca5">
         <source>New cancellation request received: </source>
         <target>Neue Widerrufsanfrage erhalten: </target>
-      </trans-unit>
-      <trans-unit id="b2a7070b1fef5cb1dce4c79c376edcb4">
-        <source>Please, enter a valid email address.</source>
-        <target>Bitte eine gültige E-Mail-Adresse angeben.</target>
-      </trans-unit>
-      <trans-unit id="fc5429e645233f78a568d4d2d7505336">
-        <source>Please, enter a valid name.</source>
-        <target>Bitte einen regulären Namen eingeben.</target>
       </trans-unit>
       <trans-unit id="1bca9a873b42e847db937fb173f11394">
         <source>Provides the legally required two-stage cancellation process without mandatory login.</source>
@@ -29,10 +17,6 @@
       <trans-unit id="75c4c1be803986c1e28c56edf71bdcc8">
         <source>Statutory Cancellation Button</source>
         <target>Gesetzlicher Widerrufs-Button (§ 356a BGB)</target>
-      </trans-unit>
-      <trans-unit id="9cf7caf665e9236cde71c3398ac07829">
-        <source>The order reference contains invalid characters.</source>
-        <target>Die Bestellnummer enthält ungültige Zeichen.</target>
       </trans-unit>
     </body>
   </file>
