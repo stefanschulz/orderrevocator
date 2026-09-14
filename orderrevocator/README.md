@@ -1,4 +1,4 @@
-# Feature Navigator Module for PrestaShop
+# Order Revocator Module for PrestaShop
 
 ## About
 
