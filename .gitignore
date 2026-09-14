@@ -4,3 +4,5 @@
 .php-cs-fixer.cache
 orderrevocator*.zip
 /orderrevocator/vendor/
+/orderrevocator/.phpunit.cache/
+/orderrevocator/.phpunit.result.cache
