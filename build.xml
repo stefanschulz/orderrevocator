@@ -21,6 +21,7 @@
                 <exclude name="${folder}/tests/**"/>
                 <exclude name="${folder}/phpunit.xml.dist"/>
                 <exclude name="${folder}/.phpunit.result.cache"/>
+                <exclude name="${folder}/coverage.xml"/>
             </fileset>
         </zip>
         <phingcall target="composer.install.development"/>
