@@ -17,6 +17,7 @@ class BuildTest extends TestCase
         $this->assertStringContainsString('exclude name="${folder}/tests/**"', $content, 'The tests directory must be excluded from the production package.');
         $this->assertStringContainsString('exclude name="${folder}/phpunit.xml.dist"', $content, 'The phpunit configuration file must be excluded from the production package.');
         $this->assertStringContainsString('exclude name="${folder}/.phpunit.result.cache"', $content, 'The PHPUnit result cache must be excluded from the production package.');
+        $this->assertStringContainsString('exclude name="${folder}/coverage.xml"', $content, 'The Clover coverage report must be excluded from the production package.');
     }
 
     /**
