@@ -15,4 +15,18 @@
             <directory>tests/Integration</directory>
         </testsuite>
     </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+            <directory>controllers</directory>
+            <file>orderrevocator.php</file>
+        </include>
+        <exclude>
+            <!-- Directory-listing-prevention stubs, no logic to cover -->
+            <file>src/index.php</file>
+            <file>src/Entity/index.php</file>
+            <file>controllers/index.php</file>
+            <file>controllers/front/index.php</file>
+        </exclude>
+    </source>
 </phpunit>

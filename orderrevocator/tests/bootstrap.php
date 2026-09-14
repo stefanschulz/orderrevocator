@@ -22,6 +22,7 @@ if (!defined('_PS_MODULE_DIR_')) {
 // Minimal stand-ins for the PrestaShop core classes this module depends on.
 require_once __DIR__ . '/Mocks/PrestaShopMock.php';
 
-// Load the module's own front controller, which composer's classmap
-// autoloader would otherwise only resolve lazily on first use.
+// Load the module's own classes, which composer's classmap autoloader
+// would otherwise only resolve lazily on first use.
 require_once __DIR__ . '/../controllers/front/form.php';
+require_once __DIR__ . '/../orderrevocator.php';

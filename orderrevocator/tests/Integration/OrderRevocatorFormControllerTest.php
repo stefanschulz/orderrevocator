@@ -46,6 +46,22 @@ class OrderRevocatorFormControllerTest extends TestCase
         $controller->context->cookie->orderrevocator_rendered_at = time() - $secondsAgo;
     }
 
+    public function testFreshPageLoadSeedsTheRenderTimestampCookie(): void
+    {
+        $controller = $this->newController();
+        // No submit_revocation in $_POST/$_GET: this is a plain page load.
+
+        $before = time();
+        $controller->initContent();
+        $after = time();
+
+        $renderedAt = (int) $controller->context->cookie->orderrevocator_rendered_at;
+        $this->assertGreaterThanOrEqual($before, $renderedAt);
+        $this->assertLessThanOrEqual($after, $renderedAt);
+        $this->assertEmpty(Mail::$log);
+        $this->assertEmpty($controller->errors);
+    }
+
     public function testHoneypotFilledRedirectsSilentlyWithoutSendingMail(): void
     {
         $controller = $this->newController();

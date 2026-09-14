@@ -179,12 +179,24 @@ class SmartyStub
     }
 }
 
+class ControllerStub
+{
+    /** @var array<int, array{id: string, path: string, params: array}> */
+    public array $registeredStylesheets = [];
+
+    public function registerStylesheet(string $id, string $path, array $params = []): void
+    {
+        $this->registeredStylesheets[] = ['id' => $id, 'path' => $path, 'params' => $params];
+    }
+}
+
 class Context
 {
     public Cookie $cookie;
     public Language $language;
     public Link $link;
     public SmartyStub $smarty;
+    public ControllerStub $controller;
 
     public function __construct()
     {
@@ -192,6 +204,7 @@ class Context
         $this->language = new Language();
         $this->link = new Link();
         $this->smarty = new SmartyStub();
+        $this->controller = new ControllerStub();
     }
 }
 
@@ -200,16 +213,72 @@ class Module
     public Context $context;
     public array $errors = [];
 
+    // Properties a real module sets on itself in its constructor - declared
+    // here so PHP 8.2+'s deprecation of dynamic properties doesn't trip tests.
+    public string $name = '';
+    public string $tab = '';
+    public string $version = '';
+    public string $author = '';
+    public int $need_instance = 0;
+    public array $ps_versions_compliancy = [];
+    public bool $bootstrap = false;
+    public string $displayName = '';
+    public string $description = '';
+
+    /** @var array<int, string> hooks registered via registerHook(), for assertions */
+    public array $registeredHooks = [];
+    /** @var array<int, string> hooks removed via unregisterHook(), for assertions */
+    public array $unregisteredHooks = [];
+    public ?string $lastFetchedTemplate = null;
+    /** @var array<int, array{id: string, domain: ?string}> recorded trans() calls, for asserting translation domains */
+    public array $translationLog = [];
+
     public function __construct()
     {
         $this->context = new Context();
+    }
+
+    public function trans(string $id, array $params = [], ?string $domain = null): string
+    {
+        $this->translationLog[] = ['id' => $id, 'domain' => $domain];
+
+        return $id;
+    }
+
+    public function install(): bool
+    {
+        return true;
+    }
+
+    public function uninstall(): bool
+    {
+        return true;
+    }
+
+    public function registerHook(string $hookName): bool
+    {
+        $this->registeredHooks[] = $hookName;
+
+        return true;
+    }
+
+    public function unregisterHook(string $hookName): bool
+    {
+        $this->unregisteredHooks[] = $hookName;
+
+        return true;
+    }
+
+    public function fetch(string $template): string
+    {
+        $this->lastFetchedTemplate = $template;
+
+        return '<!-- rendered: ' . $template . ' -->';
     }
 }
 
 class ModuleFrontController extends Module
 {
-    /** @var array<int, array{id: string, domain: ?string}> recorded trans() calls, for asserting translation domains */
-    public array $translationLog = [];
     public ?string $lastTemplate = null;
 
     public function initContent(): void
@@ -220,12 +289,5 @@ class ModuleFrontController extends Module
     public function setTemplate(string $template): void
     {
         $this->lastTemplate = $template;
-    }
-
-    public function trans(string $id, array $params = [], ?string $domain = null): string
-    {
-        $this->translationLog[] = ['id' => $id, 'domain' => $domain];
-
-        return $id;
     }
 }
